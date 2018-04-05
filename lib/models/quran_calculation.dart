@@ -24,7 +24,7 @@ class QuranCalculation{
       jozdiff++;
     }
     
-    this.currentHezb = hezbStartId + hezbDiff;
+    this.currentHezb = (hezbStartId + hezbDiff)%30;
     this.currentJoz = jozeStartId + jozdiff;
     return([this.currentHezb,this.currentJoz]);
     //find current day read hezb

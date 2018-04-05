@@ -21,6 +21,17 @@ class InitiateAppPageState extends State<InitiateAppPage> {
     this.data = new QuranCalculation();
      calcData();
      fillDropDownList();
+     getUserData();
+  }
+  getUserData()async {
+    var v = await this.data.loadUserData();
+    setState((){
+    selectedJoze = v[0].toString();
+    selectedHezb = v[1].toString();
+    startDate = DateTime.parse(v[2]);
+    });
+
+
   }
   fillDropDownList() {
     List<DropdownMenuItem<String>> jozeListItems = new List();
@@ -58,10 +69,10 @@ class InitiateAppPageState extends State<InitiateAppPage> {
         shrinkWrap: true,
         padding: const EdgeInsets.all(20.0),
         children: <Widget>[
-          new Image.asset(
-            'assets/images/init-banner.jpg',
+          /*new Image.asset(
+            'assets/images/init-banner.png',
             fit: BoxFit.cover,
-          ),
+          ),*/
           new Container(
             padding: new EdgeInsets.only(top: 16.0),
           ),
