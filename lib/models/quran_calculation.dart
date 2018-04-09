@@ -3,8 +3,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class QuranCalculation{
   List<Joze> jozeList;
-  int currentJoz = 0 ;
-  int currentHezb = 0;
+  int currentJoz = 1 ;
+  int currentHezb = 1;
   QuranCalculation();
   getCalculatedData() async{
     this.jozeList = getJozeList();
@@ -24,8 +24,8 @@ class QuranCalculation{
       jozdiff++;
     }
     
-    this.currentHezb = (hezbStartId + hezbDiff)%30;
-    this.currentJoz = jozeStartId + jozdiff;
+    this.currentHezb = hezbStartId + hezbDiff;
+    this.currentJoz = (jozeStartId + jozdiff)>30?(jozeStartId + jozdiff)%30:(jozeStartId + jozdiff);
     return([this.currentHezb,this.currentJoz]);
     //find current day read hezb
 
@@ -41,7 +41,10 @@ class QuranCalculation{
       SharedPreferences prefs = await SharedPreferences.getInstance();
       var jozeStartId =prefs.getInt('jozeStartId');
       var hezbStartId =prefs.getInt('hezbStartId');
+      jozeStartId = jozeStartId!=null?jozeStartId:1;
+      hezbStartId = hezbStartId!=null?hezbStartId:1;
       var periodStartDate =prefs.getString('periodStartDate');
+      periodStartDate = periodStartDate!=null?periodStartDate:new DateTime.now().toIso8601String();
       return [jozeStartId,hezbStartId,periodStartDate];
   }
 

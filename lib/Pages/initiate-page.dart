@@ -35,7 +35,7 @@ class InitiateAppPageState extends State<InitiateAppPage> {
   }
   fillDropDownList() {
     List<DropdownMenuItem<String>> jozeListItems = new List();
-    for (var i = 0; i <= 30; i++) {
+    for (var i = 1; i <= 30; i++) {
       jozeListItems.add(new DropdownMenuItem(
         child: new Text(i.toString()),
         value: i.toString(),
@@ -43,7 +43,7 @@ class InitiateAppPageState extends State<InitiateAppPage> {
     this.jozeListItems = jozeListItems;
     //fill hezb list drop down
     List<DropdownMenuItem<String>> hezbListItems = new List();
-    for (var i = 0; i <= 4; i++) {
+    for (var i = 1; i <= 4; i++) {
       hezbListItems.add(new DropdownMenuItem(
         child: new Text(i.toString()),
         value: i.toString(),
